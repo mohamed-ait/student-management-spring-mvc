@@ -61,7 +61,7 @@
                             </form>
                         </td>
                         <td sec:authorize="hasAuthority('ADMIN')" >
-                            <a class="btn btn-success" th:href="@{/editEtudiant(id=${e.id},page=${currentPage -1},keyWord=${keyWord})}"><i class="bi bi-pen"></i></a>
+                            <a class="btn btn-success" th:href="@{/editEtudiant(id=${e.id},page=${currentPage},keyWord=${keyWord})}"><i class="bi bi-pen"></i></a>
                         </td>
                     </tr>
                     </tbody>

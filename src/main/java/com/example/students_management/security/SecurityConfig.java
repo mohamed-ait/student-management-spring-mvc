@@ -35,7 +35,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
      auth.inMemoryAuthentication().withUser("user1").password(encodedPasword).roles("USER");
         auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder.encode("admin12345")).roles("Admin");*/
       /*auth.jdbcAuthentication().dataSource(dataSource)
-                //cette requète permet de charger l'tuilisateur:
+                //cette requète permet de charger l'utilisateur:
                 .usersByUsernameQuery("select username as principal,password as credentials,active from users where username=?")
                 .authoritiesByUsernameQuery("select username as principal, role as role from users_roles where username=?")
                 .rolePrefix("ROLE_")
@@ -44,10 +44,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/login").defaultSuccessUrl("/",false);
+        http.formLogin().loginPage("/login").defaultSuccessUrl("/index",false);
         http.csrf().disable();
         http.authorizeHttpRequests().antMatchers("/","/login/**").permitAll();
-        http.authorizeHttpRequests().antMatchers("/index/**","/addEtudiant/**","/delete/**","/save/**","/editEtudiant/**").hasAuthority("ADMIN");
+        http.authorizeHttpRequests().antMatchers("/index/**","/addEtudiant/**","/delete/**","/save/**","/update/**","/editEtudiant/**").hasAuthority("ADMIN");
         http.authorizeHttpRequests().antMatchers("/index/**").hasAuthority("USER");
         http.authorizeHttpRequests().antMatchers("/webjars/**").permitAll();
         http.exceptionHandling().accessDeniedPage("/403");

@@ -53,6 +53,13 @@ public class EtudiantController {
         etudiantRepository.save(etudiant);
         return "redirect:/index?page="+page+"&keyWord="+keyWord;
     }
+    //methode to update a student
+    @PostMapping("/update")
+    public String update(Model model, @Valid  Etudiant etudiant, BindingResult bindingResult,@RequestParam(name ="page",defaultValue = "0") int page,@RequestParam(name ="keyWord",defaultValue = " ") String keyWord){
+//        if(bindingResult.hasErrors()) return "editFormPage";
+        etudiantRepository.save(etudiant);
+        return "redirect:/index?page="+page+"&keyWord="+keyWord;
+    }
     //methode to get addFormEtudiant view :
     @GetMapping("/addEtudiant")
     public String addFormEtudiant(Model model){

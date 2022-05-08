@@ -17,20 +17,22 @@
                     <h3 class="text-center "><i class="bi bi-person-square mr-3" style="margin-right:10px"></i>Modifier un étudiant</h3>
                 </div>
                 <div class="card-body">
-                    <form method="post" th:action="@{/save}" >
+                    <form method="post" th:action="@{/update(page=${page},keyword=${keyword})}" >
+                        <input type="hidden" class="form-control" id="id"  name="id" th:value="${etudiant.getId()}">
+
                         <div class="row my-4">
                         <div class=" col-md-6 ">
-                            <input type="text" class="form-control" id="nom" placeholder="Enter nom" name="nom" th:value="${etudiant.nom}">
+                            <input type="text" class="form-control" id="nom" placeholder="Enter nom" name="nom" th:value="${etudiant.getNom()}">
                             <span class="text-danger" th:errors="${etudiant.nom}"></span>
                         </div>
                         <div class=" col-md-6 ">
-                            <input type="text" class="form-control" id="prenom" placeholder="Enter le prénom" name="prenom" th:value="${etudiant.prenom}">
+                            <input type="text" class="form-control" id="prenom" placeholder="Enter le prénom" name="prenom" th:value="${etudiant.getPrenom()}">
                             <span class="text-danger" th:errors="${etudiant.prenom}"></span>
                         </div>
                         </div>
                         <div class="row my-4">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" th:value="${etudiant.email}">
+                            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" th:value="${etudiant.getEmail()}">
                             <span class="text-danger" th:errors="${etudiant.email}"></span>
                         </div>
                         <div class="col-md-6">
@@ -40,14 +42,14 @@
                         </div>
                         <div class="row my-4">
                             <div class="col-md-6">
-                            <select class="form-select" th:value="${etudiant.genre}" id="genre">
-                                <option th:value="${etudiant.getGenre()} == 'MASCULIN' ? true : false ">MASCULIN</option>
-                                <option th:selected="${etudiant.getGenre()} == 'FEMININ' ? true : false  ">FEMININ</option>
+                            <select class="form-select" name="genre" id="genre">
+                                <option value="MASCULIN" th:selected="${etudiant.getGenre()} == 'MASCULIN'">MASCULIN</option>
+                                <option value="FEMININ" th:selected="${etudiant.getGenre()} == 'FEMININ'">FEMININ</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="regle" class="form-label">Règle:</label>
-                            <input class="form-check-input" type="checkbox" id="regle"  name="regle" th:checked="${etudiant.regle}">
+                            <input class="form-check-input" type="checkbox" id="regle"  name="regle" th:checked="${etudiant.isRegle()}">
                             <span class="text-danger" th:errors="${etudiant.regle}"></span>
                         </div>
                         </div>
